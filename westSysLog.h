@@ -163,9 +163,9 @@ class WestLabSyslogStreamBuffer: public std::basic_streambuf<char>
       if(n_message.size())
       {
 				/*void syslog(int priority, const char *format, ...);*/
-				syslog(lLevel, "\n %s \n", n_message.data());
+				syslog(n_lLevel, "\n %s \n", n_message.data());
         n_message.clear();
-        lLevel = basiclLevel;
+        n_lLevel = n_basiclLevel;
       }
       return 0;
     }
@@ -174,12 +174,12 @@ class WestLabSyslogStreamBuffer: public std::basic_streambuf<char>
     friend class WestLabSyslogStream;
     void SetLogLevel (WestlabSyslog::logLevel sysLogLevel) noexcept 
 		{ 
-			lLevel = sysLogLevel; 
+			n_lLevel = sysLogLevel; 
 		}
 
 	private:
-    WestlabSyslog::logLevel basiclLevel = WestlabSyslog::info; //-> basic/initialization log level for the messages
-    WestlabSyslog::logLevel lLevel = basiclLevel; //-> log level
+    WestlabSyslog::logLevel n_basiclLevel = WestlabSyslog::info; //-> basic/initialization log level for the messages
+    WestlabSyslog::logLevel n_lLevel = n_basiclLevel; //-> log level
     std::string n_message; //-> The message we are writing to the syslog
 };
 
