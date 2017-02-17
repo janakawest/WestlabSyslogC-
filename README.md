@@ -19,9 +19,4 @@ toSyslog << WestlabSyslog::debug << " "
          << __FILE__ << " "
          << std::endl;
 toSyslog << WestlabSyslog::info << " Message1" << 100 <<" Message2" << 200 << std::endl;
-
-
-/**
-  * 
-  */
-
+```
