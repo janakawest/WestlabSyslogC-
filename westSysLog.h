@@ -153,18 +153,18 @@ class WestLabSyslogStreamBuffer: public std::basic_streambuf<char>
       if(traits_type::eq_int_type(charType, traits_type::eof()))
 				sync();
 			else 
-				message += traits_type::to_char_type(charType);
+				n_message += traits_type::to_char_type(charType);
 
       return charType;
     }
 
     int sync() override
     {
-      if(message.size())
+      if(n_message.size())
       {
 				/*void syslog(int priority, const char *format, ...);*/
-				syslog(lLevel, "\n %s \n", message.data());
-        message.clear();
+				syslog(lLevel, "\n %s \n", n_message.data());
+        n_message.clear();
         lLevel = basiclLevel;
       }
       return 0;
@@ -180,7 +180,7 @@ class WestLabSyslogStreamBuffer: public std::basic_streambuf<char>
 	private:
     WestlabSyslog::logLevel basiclLevel = WestlabSyslog::info; //-> basic/initialization log level for the messages
     WestlabSyslog::logLevel lLevel = basiclLevel; //-> log level
-    std::string message; //-> The message we are writing to the syslog
+    std::string n_message; //-> The message we are writing to the syslog
 };
 
 class WestLabSyslogStream: public std::basic_ostream<char>
