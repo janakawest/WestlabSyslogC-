@@ -7,8 +7,6 @@ RFC5424         : https://tools.ietf.org/html/rfc5424
 syslog man page : https://linux.die.net/man[C/3/openlog
 online resources: http://stackoverflow.com/questions/2638654/redirect-c-stdclog-to-syslog-on-unix
 
-### Copy the file to /usr/include and use it simply including this library to your program
-
 ##Usage
 ```
 std::string logName = "TestLog";
